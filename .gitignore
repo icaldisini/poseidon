@@ -1,4 +1,3 @@
-# berkas sistem operasi
 .DS_Store
 .DS_Store?
 ._*
@@ -7,18 +6,30 @@
 ehthumbs.db
 Thumbs.db
 
-# berkas editor dan IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# data dan env
-data/*
-!data/wpp711_polygon.json
-!data/wpp711_geojson.json
 .env
+.env.*
 .env.local
 .env.*.local
+*service_account*.json
+darvin-*.json
+
 node_modules/
 .netlify/
+database_config/
+__pycache__/
+*.pyc
+
+data/*
+!data/meta.json
+!data/metrics.json
+!data/fishing_grid.json
+!data/seizures.json
+!data/wpp711_geojson.json
+!data/detections/
+!data/detections/*.json
+

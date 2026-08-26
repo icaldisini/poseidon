@@ -1,0 +1,553 @@
+{
+  "items": [
+    {
+      "date": "2023-03-20",
+      "lat": -3.44217,
+      "lon": 106.52882,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 23.270084594572022,
+      "matched": 1
+    },
+    {
+      "date": "2023-03-20",
+      "lat": -3.45342,
+      "lon": 106.54908,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 24.56206776978192,
+      "matched": 1
+    },
+    {
+      "date": "2023-03-22",
+      "lat": 2.69485,
+      "lon": 105.02312,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2023-03-22",
+      "lat": 2.7309,
+      "lon": 104.99077,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2023-03-27",
+      "lat": 2.88553,
+      "lon": 104.88138,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 22.88110397121694,
+      "matched": 1
+    },
+    {
+      "date": "2023-03-29",
+      "lat": 3.51202,
+      "lon": 109.96548,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 21.15363756626654,
+      "matched": 1
+    },
+    {
+      "date": "2023-05-20",
+      "lat": 1.60608,
+      "lon": 104.99955,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-05-20",
+      "lat": 1.56422,
+      "lon": 105.00888,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2023-05-20",
+      "lat": 1.50723,
+      "lon": 105.0157,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-05-20",
+      "lat": 1.51817,
+      "lon": 105.02263,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-05-24",
+      "lat": -3.28317,
+      "lon": 106.59928,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-06-01",
+      "lat": 3.58283,
+      "lon": 109.66022,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 14.43830837466369,
+      "matched": 1
+    },
+    {
+      "date": "2023-08-07",
+      "lat": 0.09525,
+      "lon": 108.91518,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 13.732462115058333,
+      "matched": 1
+    },
+    {
+      "date": "2023-08-25",
+      "lat": 3.89655,
+      "lon": 104.8185,
+      "flag": "Malaysia",
+      "type": "Kapal Ikan",
+      "length_m": 17.871289464666912,
+      "matched": 1
+    },
+    {
+      "date": "2023-09-13",
+      "lat": 2.53648,
+      "lon": 108.20383,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-05",
+      "lat": -0.64013,
+      "lon": 105.98972,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-05",
+      "lat": -0.63238,
+      "lon": 105.9863,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.017091241706304,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-08",
+      "lat": -1.40032,
+      "lon": 108.45012,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-08",
+      "lat": -1.40427,
+      "lon": 108.44802,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.017091241706304,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-08",
+      "lat": -1.30607,
+      "lon": 108.51655,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-09",
+      "lat": -0.85247,
+      "lon": 108.53965,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-12",
+      "lat": 1.13588,
+      "lon": 105.08417,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.017091241706304,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-12",
+      "lat": 1.25998,
+      "lon": 105.09222,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.017091241706304,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-21",
+      "lat": 0.52678,
+      "lon": 104.67887,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 9.959907832507064,
+      "matched": 1
+    },
+    {
+      "date": "2023-10-28",
+      "lat": 0.66587,
+      "lon": 105.34457,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 14.43830837466369,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-04",
+      "lat": -2.09928,
+      "lon": 106.22527,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 9.959907832507064,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-04",
+      "lat": -0.95592,
+      "lon": 105.4635,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 15.273430579319044,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-04",
+      "lat": -0.94892,
+      "lon": 105.41485,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-07",
+      "lat": 0.61558,
+      "lon": 107.93143,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 13.47808849633075,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-07",
+      "lat": 0.6156,
+      "lon": 107.93135,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 13.212468566650513,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-07",
+      "lat": 0.6155,
+      "lon": 107.93138,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 9.959907832507064,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-07",
+      "lat": -0.85263,
+      "lon": 105.23528,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 21.15363756626654,
+      "matched": 1
+    },
+    {
+      "date": "2023-11-30",
+      "lat": -3.83818,
+      "lon": 106.52855,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 22.721276986521,
+      "matched": 1
+    },
+    {
+      "date": "2023-12-08",
+      "lat": 0.97383,
+      "lon": 103.33798,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 41.08932594269331,
+      "matched": 1
+    },
+    {
+      "date": "2024-02-28",
+      "lat": 2.884,
+      "lon": 107.91668,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 22.55888835992357,
+      "matched": 1
+    },
+    {
+      "date": "2024-03-07",
+      "lat": -3.37923,
+      "lon": 122.96398,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": NaN,
+      "matched": 1
+    },
+    {
+      "date": "2024-04-03",
+      "lat": 0.26788,
+      "lon": 105.11713,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2024-05-04",
+      "lat": 5.31135,
+      "lon": 105.69378,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 23.718411454638414,
+      "matched": 1
+    },
+    {
+      "date": "2024-05-04",
+      "lat": 5.32545,
+      "lon": 105.69978,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 20.865613459294853,
+      "matched": 1
+    },
+    {
+      "date": "2024-05-08",
+      "lat": -0.32787,
+      "lon": 108.68747,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 25.090301536975144,
+      "matched": 1
+    },
+    {
+      "date": "2024-05-08",
+      "lat": -0.3415,
+      "lon": 108.59833,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 23.421670720677582,
+      "matched": 1
+    },
+    {
+      "date": "2024-05-08",
+      "lat": -0.33352,
+      "lon": 108.60075,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 24.82933466540728,
+      "matched": 1
+    },
+    {
+      "date": "2024-08-17",
+      "lat": 6.60253,
+      "lon": 108.30537,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 20.261203700654665,
+      "matched": 1
+    },
+    {
+      "date": "2024-09-10",
+      "lat": -2.35028,
+      "lon": 106.92155,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 13.212468566650513,
+      "matched": 1
+    },
+    {
+      "date": "2024-09-28",
+      "lat": -0.43748,
+      "lon": 108.13815,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2024-10-09",
+      "lat": 1.17303,
+      "lon": 103.8337,
+      "flag": "Sierra Leone",
+      "type": "Kapal Ikan",
+      "length_m": 91.66809289793991,
+      "matched": 1
+    },
+    {
+      "date": "2024-10-09",
+      "lat": 1.06395,
+      "lon": 103.7004,
+      "flag": "Sierra Leone",
+      "type": "Kapal Ikan",
+      "length_m": 93.55436084685792,
+      "matched": 1
+    },
+    {
+      "date": "2024-10-19",
+      "lat": -0.76993,
+      "lon": 108.39207,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 23.19345389966073,
+      "matched": 1
+    },
+    {
+      "date": "2024-10-19",
+      "lat": -0.61765,
+      "lon": 108.36672,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 23.270084594572022,
+      "matched": 1
+    },
+    {
+      "date": "2024-11-07",
+      "lat": 2.69972,
+      "lon": 107.45113,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2024-11-07",
+      "lat": 2.69102,
+      "lon": 107.47765,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 15.838444999984192,
+      "matched": 1
+    },
+    {
+      "date": "2024-12-18",
+      "lat": -0.4884,
+      "lon": 108.87517,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 9.959907832507064,
+      "matched": 1
+    },
+    {
+      "date": "2025-04-14",
+      "lat": 4.05002,
+      "lon": 104.78235,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 26.018474295125728,
+      "matched": 1
+    },
+    {
+      "date": "2025-04-14",
+      "lat": 4.04952,
+      "lon": 104.76247,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 26.877810670464648,
+      "matched": 1
+    },
+    {
+      "date": "2025-05-21",
+      "lat": 0.0699,
+      "lon": 105.26637,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.191377799875703,
+      "matched": 1
+    },
+    {
+      "date": "2025-05-20",
+      "lat": -5.6798,
+      "lon": 105.66712,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 23.57108822395871,
+      "matched": 1
+    },
+    {
+      "date": "2025-05-20",
+      "lat": -5.66683,
+      "lon": 105.72305,
+      "flag": "Vietnam",
+      "type": "Kapal Ikan",
+      "length_m": 25.090301536975144,
+      "matched": 1
+    },
+    {
+      "date": "2025-05-24",
+      "lat": 0.30317,
+      "lon": 104.98517,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.361556069561445,
+      "matched": 1
+    },
+    {
+      "date": "2025-07-29",
+      "lat": 3.17052,
+      "lon": 100.63335,
+      "flag": "Malaysia",
+      "type": "Kapal Ikan",
+      "length_m": NaN,
+      "matched": 1
+    },
+    {
+      "date": "2025-08-12",
+      "lat": -0.98133,
+      "lon": 100.15755,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 16.017091241706304,
+      "matched": 1
+    },
+    {
+      "date": "2025-08-11",
+      "lat": 0.19355,
+      "lon": 105.2561,
+      "flag": "Indonesia",
+      "type": "Kapal Ikan",
+      "length_m": 9.959907832507064,
+      "matched": 1
+    }
+  ]
+}

@@ -1,9 +1,9 @@
-/* serverless data proxy */
+
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-/* verify session token */
+
 function verifyToken(tokenString) {
   if (!tokenString) return null;
   const secretKey = process.env.AUTH_SECRET;
@@ -26,20 +26,20 @@ function verifyToken(tokenString) {
   }
 }
 
-/* data proxy handler */
+
 exports.handler = async function (event) {
   const filePathParam = event.queryStringParameters ? event.queryStringParameters.file : null;
   if (!filePathParam) {
     return { statusCode: 400, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Parameter file wajib diisi.' }) };
   }
 
-  /* path traversal protection */
+  
   const safePath = path.normalize(filePathParam).replace(/^(\.\.[\/\\])+/, '');
   if (safePath.includes('..')) {
     return { statusCode: 403, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'Akses path tidak diizinkan.' }) };
   }
 
-  /* verify file access */
+  
   const publicFiles = ['meta.json', 'metrics.json'];
   const isPublic = publicFiles.includes(path.basename(safePath));
 
@@ -53,14 +53,9 @@ exports.handler = async function (event) {
   }
 
   try {
-    const authHeader = event.headers.authorization || event.headers.Authorization || '';
-    const token = authHeader.replace(/^Bearer\s+/i, '').trim();
-    const tokenData = verifyToken(token);
-    const isSimUser = tokenData && tokenData.user && tokenData.user.toLowerCase() === 'simulasi';
-
     const liveDataDir = process.env.LIVE_DATA_DIR;
     let dataDir = path.join(__dirname, '../../data');
-    if (!isSimUser && liveDataDir && fs.existsSync(liveDataDir)) {
+    if (liveDataDir && fs.existsSync(liveDataDir)) {
       dataDir = liveDataDir;
     }
 

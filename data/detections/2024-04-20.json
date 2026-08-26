@@ -1,0 +1,1 @@
+{"pass_id":"2024-04-20","columns":["row_id","lat","lon","length_m","cat","ais","fscore","mscore","flag","vv","vh","snr","mpa","eez","port","hour"],"rows":[[64910,-2.89711,110.21571,28.6,"unmatched",0,0.155,0.0,"UNKNOWN",-25.73,-32.36,0.4,152.3,1.3,127.8,"22:17"]]}

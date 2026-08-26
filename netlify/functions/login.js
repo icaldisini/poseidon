@@ -1,7 +1,7 @@
-/* serverless auth login */
+
 const crypto = require('crypto');
 
-/* generate session token */
+
 function generateToken(username) {
   const secretKey = process.env.AUTH_SECRET;
   if (!secretKey) return null;
@@ -12,7 +12,7 @@ function generateToken(username) {
   return { token, expiresAt };
 }
 
-/* login handler */
+
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ success: false, message: 'Method Not Allowed' }) };
@@ -29,16 +29,16 @@ exports.handler = async function (event) {
       return { statusCode: 400, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ success: false, message: 'Username dan Password wajib diisi.' }) };
     }
 
-    /* verify env credentials */
-    const u1 = process.env.USER1_NAME, p1 = process.env.USER1_PASS;
-    const u2 = process.env.USER2_NAME, p2 = process.env.USER2_PASS;
-    const uSim = process.env.SIMULATION_USER || 'simulasi';
-    const pSim = process.env.SIMULATION_PASS || 'simulasi123';
-
+    
     let validUser = null;
-    if (username.trim() === uSim && password === pSim) validUser = uSim;
-    else if (u1 && p1 && username.trim() === u1 && password === p1) validUser = u1;
-    else if (u2 && p2 && username.trim() === u2 && password === p2) validUser = u2;
+    for (let i = 1; i <= 10; i++) {
+      const u = process.env[`USER${i}_NAME`];
+      const p = process.env[`USER${i}_PASS`];
+      if (u && p && username.trim() === u.trim() && password === p) {
+        validUser = u.trim();
+        break;
+      }
+    }
 
     if (validUser) {
       const { token, expiresAt } = generateToken(validUser);

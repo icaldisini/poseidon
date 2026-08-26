@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>POSEIDON - Diagnostik Koneksi Supabase Cloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --abyss: #041826;
+      --hull: #0B2F4A;
+      --shelf: #123E5F;
+      --sonar: #1477B8;
+      --foam: #66D9E8;
+      --chart: #EEF5F9;
+      --paper: #FFFFFF;
+      --flare: #FF6B45;
+      --amber: #FFB347;
+      --kelp: #0E7C6B;
+      --f-display: 'Bricolage Grotesque', Georgia, serif;
+      --f-body: 'Inter Tight', system-ui, sans-serif;
+      --f-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--abyss);
+      color: var(--chart);
+      font-family: var(--f-body);
+      min-height: 100vh;
+      padding: 32px 20px;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(102, 217, 232, 0.2);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    h1 {
+      font-family: var(--f-display);
+      font-size: 26px;
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-badge {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      background: rgba(102, 217, 232, 0.15);
+      border: 1px solid var(--foam);
+      color: var(--foam);
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .btn {
+      background: linear-gradient(135deg, #1477B8 0%, #0E5A8A 100%);
+      border: 1px solid rgba(102, 217, 232, 0.6);
+      color: #FFFFFF;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-family: var(--f-body);
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      background: linear-gradient(135deg, #188AD6 0%, #116AA4 100%);
+      box-shadow: 0 0 12px rgba(102, 217, 232, 0.4);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: rgba(18, 62, 95, 0.6);
+      border-color: rgba(102, 217, 232, 0.3);
+    }
+    .summary-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .stat-card {
+      background: rgba(11, 47, 74, 0.6);
+      border: 1px solid rgba(102, 217, 232, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      backdrop-filter: blur(8px);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(238, 245, 249, 0.7);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-val {
+      font-family: var(--f-mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--foam);
+    }
+    .tests-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .test-card {
+      background: rgba(11, 47, 74, 0.5);
+      border: 1px solid rgba(102, 217, 232, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+    .test-head {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(4, 24, 38, 0.6);
+      border-bottom: 1px solid rgba(102, 217, 232, 0.12);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .test-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .test-status-badge {
+      font-family: var(--f-mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-pending { background: rgba(255, 179, 71, 0.2); color: var(--amber); border: 1px solid var(--amber); }
+    .status-ok { background: rgba(74, 222, 128, 0.2); color: #4ADE80; border: 1px solid #4ADE80; }
+    .status-err { background: rgba(255, 107, 69, 0.2); color: var(--flare); border: 1px solid var(--flare); }
+    .test-body {
+      padding: 20px;
+    }
+    .test-query-url {
+      font-family: var(--f-mono);
+      font-size: 12px;
+      color: rgba(102, 217, 232, 0.9);
+      background: rgba(4, 24, 38, 0.8);
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(102, 217, 232, 0.15);
+      margin-bottom: 14px;
+      word-break: break-all;
+    }
+    pre {
+      background: #020F19;
+      border: 1px solid rgba(102, 217, 232, 0.2);
+      border-radius: 8px;
+      padding: 14px;
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      color: #EEF5F9;
+      max-height: 240px;
+      overflow: auto;
+    }
+    .footer-links {
+      margin-top: 32px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--foam)" stroke-width="2.2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            <path d="M12 3v3"/><path d="M12 18v3"/><path d="M3 12h3"/><path d="M18 12h3"/>
+          </svg>
+          <span>POSEIDON</span>
+          <span class="brand-badge">DIAGNOSTIK SUPABASE</span>
+        </h1>
+        <p style="font-size: 13px; color: rgba(238, 245, 249, 0.7); margin-top: 4px;">
+          Verifikasi Kueri REST API Tabel Supabase Cloud via Serverless / Local Proxy
+        </p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn" id="btnRunAll" onclick="runAllTests()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <span>Uji Ulang Semua</span>
+        </button>
+        <a href="index.html" class="btn btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+          <span>Buka Dashboard</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="summary-box">
+      <div class="stat-card">
+        <div class="stat-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Status Endpoint Proxy</span>
+        </div>
+        <div class="stat-val" id="valProxyStatus">Memeriksa…</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Latensi Rata-Rata</span>
+        </div>
+        <div class="stat-val" id="valAvgLatency">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Hasil Uji Tabel</span>
+        </div>
+        <div class="stat-val" id="valTestScore">0 / 3 Lolos</div>
+      </div>
+    </div>
+
+    <div class="tests-container">
+      
+      <div class="test-card" id="cardPasses">
+        <div class="test-head">
+          <div class="test-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--foam)" stroke-width="2"><path d="M13 2a9 9 0 0 0-9 9"/><path d="M17 2a13 13 0 0 0-13 13"/><circle cx="12" cy="12" r="3"/><path d="M12 15v6"/><path d="M8 21h8"/></svg>
+            <span>1. Tabel satellite_passes</span>
+            <span style="font-size:12px;color:rgba(238,245,249,0.6)">(699 Siklus Satelit 2023–2026)</span>
+          </div>
+          <span class="test-status-badge status-pending" id="badgePasses">Menunggu…</span>
+        </div>
+        <div class="test-body">
+          <div class="test-query-url" id="urlPasses">/api/supabase?table=satellite_passes&select=*&order=pass_date.desc&limit=5</div>
+          <pre id="jsonPasses">Menunggu eksekusi…</pre>
+        </div>
+      </div>
+
+      
+      <div class="test-card" id="cardTop10">
+        <div class="test-head">
+          <div class="test-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--foam)" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            <span>2. Tabel top10_priorities</span>
+            <span style="font-size:12px;color:rgba(238,245,249,0.6)">(2.944 Target Prioritas Siklus)</span>
+          </div>
+          <span class="test-status-badge status-pending" id="badgeTop10">Menunggu…</span>
+        </div>
+        <div class="test-body">
+          <div class="test-query-url" id="urlTop10">/api/supabase?table=top10_priorities&select=*&order=pass_date.desc,rank_siklus.asc&limit=5</div>
+          <pre id="jsonTop10">Menunggu eksekusi…</pre>
+        </div>
+      </div>
+
+      
+      <div class="test-card" id="cardVessels">
+        <div class="test-head">
+          <div class="test-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--foam)" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polygon points="2 17 12 22 22 17"/><polygon points="2 12 12 17 22 12"/></svg>
+            <span>3. Tabel vessel_detections (On-Demand Pass)</span>
+            <span style="font-size:12px;color:rgba(238,245,249,0.6)">(Titik Deteksi Siklus 2026-08-22)</span>
+          </div>
+          <span class="test-status-badge status-pending" id="badgeVessels">Menunggu…</span>
+        </div>
+        <div class="test-body">
+          <div class="test-query-url" id="urlVessels">/api/supabase?table=vessel_detections&pass_date=eq.2026-08-22&select=id,pass_date,lat,lon,length_m_new,is_dark,fishing_score_new,dist_to_nearest_mpa_km,dist_to_eez_boundary_km,dist_to_nearest_port_km,timestamp&limit=5</div>
+          <pre id="jsonVessels">Menunggu eksekusi…</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <span style="font-family:var(--f-mono);font-size:12px;color:rgba(238,245,249,0.5)">
+        POSEIDON WPP-711 · Hybrid Supabase Cloud Proxy Architecture 2026
+      </span>
+    </div>
+  </div>
+
+  <script>
+    async function queryProxy(endpoint) {
+      const t0 = performance.now();
+      try {
+        const res = await fetch(endpoint);
+        const t1 = performance.now();
+        const latency = Math.round(t1 - t0);
+        if (!res.ok) {
+          const errText = await res.text();
+          return { ok: false, status: res.status, latency, error: errText };
+        }
+        const data = await res.json();
+        return { ok: true, status: res.status, latency, data };
+      } catch (err) {
+        const t1 = performance.now();
+        return { ok: false, status: 0, latency: Math.round(t1 - t0), error: err.message };
+      }
+    }
+
+    async function runAllTests() {
+      const btn = document.getElementById('btnRunAll');
+      if (btn) btn.disabled = true;
+
+      let passedCount = 0;
+      let latencies = [];
+
+      // Test config
+      const cfgRes = await queryProxy('/api/config');
+      document.getElementById('valProxyStatus').innerHTML = cfgRes.ok
+        ? '<span style="color:#4ADE80">Siap (200 OK)</span>'
+        : '<span style="color:var(--flare)">Error Proxy</span>';
+      if (cfgRes.ok) latencies.push(cfgRes.latency);
+
+      // Test 1: satellite_passes
+      const b1 = document.getElementById('badgePasses');
+      const j1 = document.getElementById('jsonPasses');
+      b1.className = 'test-status-badge status-pending';
+      b1.textContent = 'Mengambil…';
+      const r1 = await queryProxy('/api/supabase?table=satellite_passes&select=*&order=pass_date.desc&limit=5');
+      if (r1.ok && Array.isArray(r1.data) && r1.data.length > 0) {
+        b1.className = 'test-status-badge status-ok';
+        b1.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:inline-block;vertical-align:-1px"><polyline points="20 6 9 17 4 12"/></svg> Lolos (${r1.latency} ms · ${r1.data.length} baris sampel)`;
+        j1.textContent = JSON.stringify(r1.data, null, 2);
+        passedCount++;
+        latencies.push(r1.latency);
+      } else {
+        b1.className = 'test-status-badge status-err';
+        b1.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:inline-block;vertical-align:-1px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Gagal (${r1.latency} ms · Status ${r1.status})`;
+        j1.textContent = r1.error || 'Data kosong atau gagal diambil.';
+      }
+
+      // Test 2: top10_priorities
+      const b2 = document.getElementById('badgeTop10');
+      const j2 = document.getElementById('jsonTop10');
+      b2.className = 'test-status-badge status-pending';
+      b2.textContent = 'Mengambil…';
+      const r2 = await queryProxy('/api/supabase?table=top10_priorities&select=*&order=pass_date.desc,rank_siklus.asc&limit=5');
+      if (r2.ok && Array.isArray(r2.data) && r2.data.length > 0) {
+        b2.className = 'test-status-badge status-ok';
+        b2.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:inline-block;vertical-align:-1px"><polyline points="20 6 9 17 4 12"/></svg> Lolos (${r2.latency} ms · ${r2.data.length} baris sampel)`;
+        j2.textContent = JSON.stringify(r2.data, null, 2);
+        passedCount++;
+        latencies.push(r2.latency);
+      } else {
+        b2.className = 'test-status-badge status-err';
+        b2.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:inline-block;vertical-align:-1px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Gagal (${r2.latency} ms · Status ${r2.status})`;
+        j2.textContent = r2.error || 'Data kosong atau gagal diambil.';
+      }
+
+      // Test 3: vessel_detections
+      const b3 = document.getElementById('badgeVessels');
+      const j3 = document.getElementById('jsonVessels');
+      b3.className = 'test-status-badge status-pending';
+      b3.textContent = 'Mengambil…';
+      const r3 = await queryProxy('/api/supabase?table=vessel_detections&pass_date=eq.2026-08-22&select=id,pass_date,lat,lon,length_m_new,is_dark,fishing_score_new,dist_to_nearest_mpa_km,dist_to_eez_boundary_km,dist_to_nearest_port_km,timestamp&limit=5');
+      if (r3.ok && Array.isArray(r3.data) && r3.data.length > 0) {
+        b3.className = 'test-status-badge status-ok';
+        b3.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:inline-block;vertical-align:-1px"><polyline points="20 6 9 17 4 12"/></svg> Lolos (${r3.latency} ms · ${r3.data.length} baris sampel)`;
+        j3.textContent = JSON.stringify(r3.data, null, 2);
+        passedCount++;
+        latencies.push(r3.latency);
+      } else {
+        b3.className = 'test-status-badge status-err';
+        b3.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="display:inline-block;vertical-align:-1px"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Gagal (${r3.latency} ms · Status ${r3.status})`;
+        j3.textContent = r3.error || 'Data kosong atau gagal diambil.';
+      }
+
+      // Summary updates
+      document.getElementById('valTestScore').textContent = `${passedCount} / 3 Lolos`;
+      if (latencies.length > 0) {
+        const avg = Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length);
+        document.getElementById('valAvgLatency').textContent = `${avg} ms`;
+      }
+
+      if (btn) btn.disabled = false;
+    }
+
+    window.addEventListener('DOMContentLoaded', runAllTests);
+  </script>
+</body>
+</html>

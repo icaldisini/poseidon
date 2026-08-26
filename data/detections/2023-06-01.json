@@ -1,0 +1,1 @@
+{"pass_id":"2023-06-01","columns":["row_id","lat","lon","length_m","cat","ais","fscore","mscore","flag","vv","vh","snr","mpa","eez","port","hour"],"rows":[[23771,-2.90298,110.56984,60.1,"unmatched",0,0.013,0.0,"UNKNOWN",-21.22,-32.01,0.38,173.8,5.8,142.9,"22:17"]]}

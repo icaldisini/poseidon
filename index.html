@@ -14,7 +14,40 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="is-app-loading">
+  
+  <div id="appInitOverlay" class="app-init-overlay">
+    <div class="init-card">
+      <div class="init-radar-spinner">
+        <div class="init-radar-ring ring-1"></div>
+        <div class="init-radar-ring ring-2"></div>
+        <div class="init-radar-ring ring-3"></div>
+        <div class="init-radar-sweep"></div>
+        <div class="init-radar-center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#66D9E8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+            <path d="M12 3v3"></path>
+            <path d="M12 18v3"></path>
+            <path d="M3 12h3"></path>
+            <path d="M18 12h3"></path>
+          </svg>
+        </div>
+      </div>
+      <h3 class="init-title">Menghubungkan ke Sistem POSEIDON</h3>
+      <p class="init-desc" id="initProgressText">Memuat data deteksi radar satelit & prioritas patroli...</p>
+      <div class="init-ping-chip" id="initPingBadge">
+        <span class="ping-dot" id="initPingDot"></span>
+        <span id="initPingText">Menghubungkan ke Cloud Database...</span>
+      </div>
+      <div class="init-progress-track">
+        <div class="init-progress-fill" id="initProgressFill"></div>
+      </div>
+      <div class="init-sub mono" id="initProgressSub">Sinkronisasi Siklus Sentinel-1 & Analisis Risiko</div>
+    </div>
+  </div>
+
+  <div id="topProgressBar"></div>
 
   <header class="nav">
     <a class="brand" href="#" data-tab="platform">
@@ -101,6 +134,10 @@
       </button>
     </nav>
     <div class="nav-meta-group" id="navMetaGroup">
+      <div class="nav-ping-badge" id="supabasePingBadge" title="Status Koneksi Database Cloud">
+        <span class="ping-dot" id="pingDot"></span>
+        <span id="pingStatusText">Live Database</span>
+      </div>
       <div class="nav-meta mono" id="navMeta">memuat…</div>
       <div class="nav-auth-container" id="navAuthContainer">
         <button class="nav-auth-btn is-login" id="btnHeaderLogin" title="Login Sistem Operasional">
@@ -137,7 +174,7 @@
     </div>
   </header>
 
-  <!-- tampilan platform -->
+  
   <main class="view is-active" id="view-platform">
 
     <section class="band band-hero">
@@ -163,7 +200,7 @@
       </div>
       <div class="band-inner hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow mono">Sistem pendukung keputusan · simulasi <span id="lblHeroYears">2023–2025</span></p>
+          <p class="eyebrow mono">Sistem pendukung keputusan · LIVE DATA <span id="lblHeroYears">2023–2026</span></p>
           <h1>
             <span class="hero-subtext">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -222,8 +259,8 @@
         <p class="eyebrow mono">04 · Inti metodologi</p>
         <h2>Kapal yang belum tertangkap bukan berarti kapal yang bersih.</h2>
         <div class="two-col">
-          <p>Dari <span id="lblTotalDet">151.851</span> deteksi dalam dataset, hanya <span id="lblLabelP">36</span> yang statusnya terkonfirmasi ilegal melalui catatan penindakan
-            resmi. Sisanya <span id="lblLabelU">128.381</span> berstatus tidak diketahui. Model klasifikasi konvensional memperlakukan seluruh data
+          <p>Dari <span id="lblTotalDet">184.248</span> deteksi dalam dataset, hanya <span id="lblLabelP">44</span> yang statusnya terkonfirmasi ilegal melalui catatan penindakan
+            resmi. Sisanya <span id="lblLabelU">156.664</span> berstatus tidak diketahui. Model klasifikasi konvensional memperlakukan seluruh data
             tidak berlabel sebagai negatif, sehingga secara aktif belajar mengabaikan pola yang menyerupai kasus ilegal
             yang belum terbukti.</p>
           <p>POSEIDON dilatih dengan <b>Positive-Unlabeled (PU) Learning</b>: model tidak dihukum saat memberi skor
@@ -241,11 +278,11 @@
         <ul class="limit-list">
           <li><b>Skor bukan probabilitas pelanggaran.</b> Peringkat lebih tinggi berarti lebih diprioritaskan untuk
             diverifikasi, bukan bukti pelanggaran.</li>
-          <li><b>Label positif sangat sedikit.</b> Model dilatih hanya dari <span id="lblLimitP">36</span> kasus terkonfirmasi. Pola yang jarang
+          <li><b>Label positif sangat sedikit.</b> Model dilatih hanya dari <span id="lblLimitP">44</span> kasus terkonfirmasi. Pola yang jarang
             muncul kemungkinan belum terwakilan.</li>
-          <li><b>Tidak semua penindakan tercocokkan.</b> Dari <span id="lblLimitSeizTotal">56</span> catatan penindakan, <span id="lblLimitSeizUnmatched">20</span> terjadi di luar jangkauan
+          <li><b>Tidak semua penindakan tercocokkan.</b> Dari <span id="lblLimitSeizTotal">61</span> catatan penindakan, <span id="lblLimitSeizUnmatched">17</span> terjadi di luar jangkauan
             temporal maupun spasial citra satelit yang tersedia.</li>
-          <li><b>Output berbasis data historis.</b> Seluruh hasil dihitung dari data <span id="lblLimitYears">2023–2025</span>, bukan aliran real-time.
+          <li><b>Output berbasis data historis.</b> Seluruh hasil dihitung dari data <span id="lblLimitYears">2023–2026</span>, bukan aliran real-time.
             Penerapan operasional memerlukan integrasi dengan database penindakan aktif.</li>
         </ul>
         <div class="cta-row">
@@ -270,7 +307,7 @@
     </section>
   </main>
 
-  <!-- tampilan dashboard -->
+  
   <main class="view" id="view-dashboard">
     <div class="dash">
       <aside class="rail" id="rail">
@@ -293,44 +330,17 @@
             <div class="pass-sub mono" id="passSub">—</div>
           </div>
           <div class="pass-nav">
-            <button class="btn-icon" id="passPrev" aria-label="Siklus sebelumnya">‹</button>
-            <button class="btn-icon" id="passPlay" aria-label="Putar linimasa">▶</button>
+            <button class="btn-icon" id="passPrev" aria-label="Siklus sebelumnya" title="Siklus Sebelumnya">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
             <input type="range" id="passSlider" min="0" max="0" value="0" aria-label="Geser siklus">
-            <button class="btn-icon" id="passNext" aria-label="Siklus berikutnya">›</button>
+            <button class="btn-icon" id="passNext" aria-label="Siklus berikutnya" title="Siklus Berikutnya">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
           </div>
           <div class="pass-jump">
             <select id="jumpYear" aria-label="Pilih tahun"></select>
             <select id="jumpPass" aria-label="Pilih tanggal siklus"></select>
-          </div>
-        </div>
-
-        <div class="rail-group">
-          <div class="rail-head">
-            <span class="rail-head-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
-              </svg>
-              Rata-rata Revisit Satelit
-            </span>
-          </div>
-          <div class="revisit-stats-box">
-            <div class="revisit-stat-row">
-              <span class="revisit-label">Periode Data (2023–2025)</span>
-              <span class="revisit-badge">570 perlintasan</span>
-            </div>
-            <div class="revisit-metrics-grid">
-              <div class="revisit-metric">
-                <span class="revisit-tag">Rata-Rata</span>
-                <span class="revisit-val" id="revisitMeanVal">1,92</span>
-                <span class="revisit-unit">hari / siklus</span>
-              </div>
-              <div class="revisit-metric">
-                <span class="revisit-tag">Median</span>
-                <span class="revisit-val" id="revisitMedianVal">2,00</span>
-                <span class="revisit-unit">hari / siklus</span>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -394,7 +404,7 @@
           </div>
           <label class="chk"><input type="checkbox" id="laySeizure"> <span>Lokasi penindakan</span></label>
           <label class="chk"><input type="checkbox" id="layWpp" checked> <span>Batas WPP-711</span></label>
-          <label class="chk"><input type="checkbox" id="layTop10"> <span>Prioritas siklus ini</span></label>
+          <label class="chk"><input type="checkbox" id="layTop10" checked> <span>Prioritas siklus ini</span></label>
         </div>
 
         <div class="rail-group rail-detail" id="railDetail">
@@ -414,11 +424,15 @@
 
       <div class="map-wrap">
         <div class="map-zoom-slider-wrap" id="mapZoomSliderWrap">
-          <button class="map-zoom-btn" id="mapZoomInBtn" title="Perbesar Peta" aria-label="Zoom In">+</button>
+          <button class="map-zoom-btn" id="mapZoomInBtn" title="Perbesar Peta" aria-label="Zoom In">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
           <div class="map-zoom-track">
             <input type="range" id="mapZoomSlider" min="5" max="12" step="0.1" value="7" aria-label="Slider Zoom Peta">
           </div>
-          <button class="map-zoom-btn" id="mapZoomOutBtn" title="Perkecil Peta" aria-label="Zoom Out">−</button>
+          <button class="map-zoom-btn" id="mapZoomOutBtn" title="Perkecil Peta" aria-label="Zoom Out">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
           <span class="map-zoom-level-badge" id="mapZoomLevelVal">7.0×</span>
         </div>
         <button id="mapBasemapBtn" class="map-basemap-cool-btn" title="Ganti Mode Peta (Satelit / Jalan)" aria-label="Ganti Basemap Peta">
@@ -447,6 +461,12 @@
           <button id="mapSearchBtn" class="btn btn-sm">Cari</button>
         </div>
         <div id="map"></div>
+        <div class="map-loading-overlay" id="mapLoadingOverlay">
+          <div class="map-loading-pill">
+            <div class="map-loading-sonar"></div>
+            <span id="mapLoadingText">Memuat deteksi radar...</span>
+          </div>
+        </div>
         <div class="map-badge mono" id="mapBadge">—</div>
         <div class="map-scroll-hint" id="mapScrollHint" title="Gulir ke bawah untuk melihat detail operasional & tabel prioritas">
           <div class="hint-pulse-dot"></div>
@@ -486,25 +506,25 @@
       </div>
       <div class="top-strip" id="topStrip"></div>
 
-      <!-- ringkasan risiko operasional siklus -->
+      
       <div id="dashExtraSummary" style="margin-top:28px"></div>
 
-      <!-- matriks faktor risiko agregat -->
+      
       <div id="dashRiskMatrix" style="margin-top:24px"></div>
 
-      <!-- tabel komparasi operasional kapal prioritas -->
+      
       <div id="dashTablePanel" style="margin-top:24px"></div>
     </section>
   </main>
 
-  <!-- tampilan operasi -->
+  
   <main class="view" id="view-operasi">
     <div class="page">
       <p class="eyebrow mono">Keluaran operasional</p>
       <h2 class="page-title">Prioritas patroli per siklus satelit</h2>
       <p class="page-lede">Setiap siklus menghasilkan sepuluh deteksi dengan skor risiko tertinggi. Tingkat siaga
         ditentukan dari peringkat relatif dalam siklus yang sama, sehingga tetap sebanding antar siklus. Status
-        conformal merupakan pemeriksaan independen: apakah skor kapal tersebut melewati ambang jaminan cakupan 90% yang
+        conformal merupakan pemeriksaan statistik: apakah skor kapal tersebut melewati ambang jaminan cakupan 90% yang
         dikalibrasi via conformal prediction.</p>
 
       <div class="op-controls">
@@ -537,10 +557,10 @@
             <div class="op-chart-icon-badge">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B45" stroke-width="2.5"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="17" rx="1"/></svg>
             </div>
-            <span class="op-chart-title-text">Distribusi Skor Siaga 1 (Prioritas Verifikasi) 2025</span>
+            <span class="op-chart-title-text">Distribusi Skor Siaga 1 (Prioritas Verifikasi)</span>
           </div>
           <div class="op-chart-legend mono">
-            <span class="legend-p70">⚡ P70 (&gt; 0,0225)</span>
+            <span class="legend-p70"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block;vertical-align:-1px"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Siaga 1 (Prioritas P70)</span>
             <span class="legend-active" id="opChartActiveLabel">—</span>
           </div>
         </div>
@@ -551,20 +571,18 @@
     </div>
   </main>
 
-  <!-- tampilan statistik -->
+  
   <main class="view" id="view-statistik">
     <div class="page">
       <p class="eyebrow mono">Validasi</p>
       <h2 class="page-title">Performa model secara terukur</h2>
-      <p class="page-lede">Seluruh metrik dihitung secara out-of-fold: setiap deteksi dievaluasi oleh model yang tidak
-        pernah melihatnya saat training. Model pembanding dilatih dengan fitur, jumlah iterasi, dan protokol
-        cross-validation yang identik. Selisih performa mencerminkan perbedaan metodologi, bukan perbedaan tuning.</p>
+      <p class="page-lede">Seluruh metrik dievaluasi secara independen pada data uji out-of-time (OOT): setiap deteksi dinilai oleh model tanpa melibatkan data tersebut dalam proses pelatihan. Seluruh model pembanding dilatih dengan fitur, jumlah iterasi, serta protokol validasi yang identik sehingga perbandingan performa secara objektif merefleksikan efektivitas formulasi Positive-Unlabeled (PU) Learning.</p>
 
       <div class="kpi-row" id="kpiRow"></div>
 
       <div class="panel">
-        <h3>Tren Musiman Kapal Tanpa AIS (<span id="lblTimeSeriesYears">2023–2025</span>)</h3>
-        <p class="note">Grafik waktu menunjukkan fluktuasi akumulasi kapal tanpa AIS per bulan berdasarkan <span id="lblPassCount">570</span> siklus
+        <h3>Tren Musiman Kapal Tanpa AIS (<span id="lblTimeSeriesYears">2023–2026</span>)</h3>
+        <p class="note">Grafik waktu menunjukkan fluktuasi akumulasi kapal tanpa AIS per bulan berdasarkan <span id="lblPassCount">699</span> siklus
           perlintasan satelit Sentinel-1.</p>
         <div id="timeSeriesChart" style="margin-top:16px"></div>
       </div>
@@ -574,37 +592,31 @@
         <div class="table-scroll">
           <table class="tbl" id="cmpTable"></table>
         </div>
-        <p class="note">Alert Efficiency: proporsi kasus terkonfirmasi ilegal yang masuk dalam Top-10 di siklus
-          deteksinya masing-masing. Setara dengan recall pada protokol operasional.</p>
+        <div id="alertEffContainer" style="margin-top:16px;"></div>
       </div>
 
       <div class="grid-2">
         <div class="panel">
-          <h3>Precision pada K teratas</h3>
-          <div id="atkChart"></div>
+          <h3>Kurva Precision–Recall (OOT 2026)</h3>
+          <p class="note">Evaluasi perbandingan presisi terhadap recall pada data uji out-of-time untuk Pipeline GFW dan Pipeline GEE (Mitigasi).</p>
+          <div id="prChart" style="margin-top:12px"></div>
         </div>
         <div class="panel">
-          <h3>Kurva Precision–Recall</h3>
-          <div id="prChart"></div>
+          <h3>Kurva ROC (OOT 2026)</h3>
+          <p class="note">Perbandingan True Positive Rate (TPR) terhadap False Positive Rate (FPR) kedua pipeline dengan garis acak dasar (diagonal dashed line).</p>
+          <div id="rocChart" style="margin-top:12px"></div>
         </div>
       </div>
 
       <div class="panel">
-        <h3>Tradeoff: jaminan cakupan vs. beban kerja patroli</h3>
-        <p class="note">Target coverage yang lebih tinggi mengharuskan lebih banyak kapal diperiksa per siklus. Kurva
-          ini membantu menyesuaikan ambang conformal dengan kapasitas armada yang tersedia.</p>
-        <div id="tradeChart"></div>
+        <h3>Kontribusi fitur kedua pipeline (feature importance)</h3>
+        <p class="note">Perbandingan kontribusi fitur (*gain percentage*) antara <b>Pipeline GFW (Pipeline Utama · 17 Fitur)</b> dan <b>Pipeline GEE (Strategi Mitigasi · 13 Fitur)</b>. Pipeline GEE dikembangkan sebagai strategi mitigasi operasional untuk menjaga keberlanjutan deteksi saat sebagian data GFW tidak tersedia akibat masa transisi/peralihan satelit Sentinel-1.</p>
+        <div id="impChart" style="margin-top:16px"></div>
       </div>
 
-      <div class="grid-2">
-        <div class="panel">
-          <h3>Kontribusi fitur (feature importance)</h3>
-          <div id="impChart"></div>
-        </div>
-        <div class="panel">
-          <h3>Kalibrasi conformal prediction</h3>
-          <div id="confPanel"></div>
-        </div>
+      <div class="panel">
+        <h3>Kalibrasi conformal prediction</h3>
+        <div id="confPanel"></div>
       </div>
 
       <div class="panel">
@@ -619,7 +631,7 @@
     <span class="mono" id="footMeta"></span>
   </footer>
 
-  <!-- auth lock overlay -->
+  
   <div class="auth-lock-overlay" id="authLockOverlay" style="display:none;">
     <div class="auth-card">
       <div class="auth-shield-icon">
@@ -632,24 +644,11 @@
       <p class="auth-subtitle">Sistem Pendukung Keputusan WPP-711 Natuna Utara</p>
       <p class="auth-desc">Menu Dashboard Peta & Prioritas Patroli hanya dapat diakses oleh personel berwenang. Silakan masukkan kredensial operasional Anda.</p>
       
-      <div class="auth-sim-box">
-        <div class="auth-sim-header">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#66D9E8" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="16" x2="12" y2="12"/>
-            <line x1="12" y1="8" x2="12.01" y2="8"/>
-          </svg>
-          <span>Kredensial Mode Simulasi (2023–2025)</span>
-        </div>
-        <p class="auth-sim-desc">Untuk mengakses data simulasi historis 2023–2025, gunakan kredensial berikut:</p>
-        <div class="auth-sim-credentials">
-          <span>Username: <b>simulasi</b></span>
-          <span>Password: <b>simulasi123</b></span>
-          <button type="button" class="btn-sim-quickfill" id="btnSimQuickFill">Isi Otomatis</button>
-        </div>
-      </div>
+      <form class="auth-form" id="authLoginForm" onsubmit="return false;" autocomplete="on">
+        
+        <input type="text" name="fake_username_remember" style="position:absolute;opacity:0;pointer-events:none;height:0;width:0;z-index:-1;" tabindex="-1" aria-hidden="true" autocomplete="username">
+        <input type="password" name="fake_password_remember" style="position:absolute;opacity:0;pointer-events:none;height:0;width:0;z-index:-1;" tabindex="-1" aria-hidden="true" autocomplete="current-password">
 
-      <form class="auth-form" id="authLoginForm" onsubmit="return false;">
         <div class="auth-field">
           <label for="authUsername">Username</label>
           <div class="auth-input-wrap">
@@ -657,7 +656,7 @@
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
               <circle cx="12" cy="7" r="4"/>
             </svg>
-            <input type="text" id="authUsername" placeholder="Masukkan username operasional..." required autocomplete="username">
+            <input type="text" id="authUsername" name="username" placeholder="Masukkan username operasional..." required autocomplete="username" value="">
           </div>
         </div>
         
@@ -668,7 +667,7 @@
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
               <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
             </svg>
-            <input type="password" id="authPassword" placeholder="Masukkan password..." required autocomplete="current-password">
+            <input type="password" id="authPassword" name="password" placeholder="Masukkan password..." required autocomplete="current-password" value="">
             <button type="button" class="auth-pwd-toggle" id="authPwdToggle" title="Tampilkan/Sembunyikan Password">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="authPwdEyeIcon">
                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
@@ -694,10 +693,10 @@
 
   <div class="global-bar-tooltip" id="globalBarTooltip"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="ocean.js"></script>
-  <script src="dashboard_bg.js"></script>
-  <script src="operasi_bg.js"></script>
-  <script src="statistik_bg.js"></script>
+  <script src="background/ocean.js"></script>
+  <script src="background/dashboard_bg.js"></script>
+  <script src="background/operasi_bg.js"></script>
+  <script src="background/statistik_bg.js"></script>
   <script src="app.js"></script>
 </body>
 

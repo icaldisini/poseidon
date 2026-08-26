@@ -1,0 +1,172 @@
+{
+  "project": "POSEIDON",
+  "subtitle": "Sistem prioritisasi patroli IUU fishing berbasis citra radar satelit & oseanografi",
+  "region": "WPP-711 (Laut Natuna Utara, Selat Karimata, Laut Cina Selatan)",
+  "generated_at": "2026-08-26T08:57:04.398514+00:00",
+  "data": {
+    "total_detections_history": 184248,
+    "date_start": "2023-01-01 22:23:34+00:00",
+    "date_end": "2026-08-22 11:24:44+00:00",
+    "n_passes_total": 699,
+    "label_P": 44,
+    "label_RN": 27540,
+    "label_U": 156664,
+    "seizures_total": 61,
+    "seizures_unmatched": 17,
+    "detections_scored_2025": 52116,
+    "detections_scored_2026_gfw": 27049,
+    "detections_scored_2026_gee": 5348,
+    "total_detections_scored": 84513
+  },
+  "model": {
+    "architecture_gfw": "LightGBM (GFW)",
+    "architecture_gee": "XGBoost (GEE)",
+    "loss": "non-negative PU Loss (Kiryo et al., 2017)",
+    "class_prior_pi_gee": 0.001533873029399233,
+    "pi_ensemble_gee": [
+      0.0012836905440329592,
+      0.001533873029399233,
+      0.001815251135152168
+    ],
+    "class_prior_pi_gfw": 0.001533873029399233,
+    "pi_ensemble_gfw": [
+      0.0012836905440329592,
+      0.001533873029399233,
+      0.001815251135152168
+    ],
+    "n_seeds": 5,
+    "n_rounds": 200,
+    "blend_weight_lgb": 0.5,
+    "calibration": "Conformal Prediction (alpha=0.10, target=90%)",
+    "conformal_q_gfw": 0.0003609492156989189,
+    "conformal_q_gee": 0.001300503732636571,
+    "n_features_gfw": 17,
+    "n_features_gee": 13,
+    "features_gfw": [
+      "vv_intensity_db",
+      "vh_intensity_db",
+      "radar_intensity_diff",
+      "background_clutter",
+      "snr_db",
+      "length_m",
+      "dist_to_nearest_mpa_km",
+      "dist_to_eez_boundary_km",
+      "dist_to_nearest_port_km",
+      "dist_to_nearest_seizure_km",
+      "matching_score",
+      "ais_flag_country_encoded",
+      "fishing_score",
+      "area_dark_count_30d",
+      "area_dark_flag",
+      "historical_hotspot",
+      "quarter"
+    ],
+    "features_gee": [
+      "vv_intensity_db",
+      "vh_intensity_db",
+      "radar_intensity_diff",
+      "background_clutter",
+      "snr_db",
+      "length_m_new",
+      "dist_to_nearest_mpa_km",
+      "dist_to_eez_boundary_km",
+      "dist_to_nearest_port_km",
+      "dist_to_nearest_seizure_km",
+      "fishing_score_new",
+      "historical_hotspot",
+      "quarter"
+    ],
+    "thresholds_siaga_2025_gfw": {
+      "1": {
+        "q70": 0.04324333746271676
+      },
+      "2": {
+        "q70": 0.08676943103253613
+      },
+      "3": {
+        "q70": 0.07192096973234055
+      },
+      "4": {
+        "q70": 0.06928805374505047
+      }
+    },
+    "thresholds_siaga_2025_gee": {
+      "1": {
+        "q70": 0.045150796053899094
+      },
+      "2": {
+        "q70": 0.07653291480281815
+      },
+      "3": {
+        "q70": 0.07172845542284215
+      },
+      "4": {
+        "q70": 0.0649700620641555
+      }
+    }
+  },
+  "dimensions": [
+    {
+      "code": "A",
+      "name": "Karakteristik Fisik Radar",
+      "features": [
+        "vv_intensity_db",
+        "vh_intensity_db",
+        "radar_intensity_diff",
+        "background_clutter",
+        "snr_db",
+        "length_m"
+      ]
+    },
+    {
+      "code": "B",
+      "name": "Konteks Spasial & Regulasi",
+      "features": [
+        "dist_to_nearest_mpa_km",
+        "dist_to_eez_boundary_km",
+        "dist_to_nearest_port_km",
+        "dist_to_nearest_seizure_km"
+      ]
+    },
+    {
+      "code": "C",
+      "name": "Fishing Score Oseanografi",
+      "features": [
+        "fishing_score"
+      ]
+    },
+    {
+      "code": "D",
+      "name": "Perilaku AIS & Konteks Spasio-Temporal",
+      "features": [
+        "matching_score",
+        "ais_flag_country_encoded",
+        "area_dark_count_30d",
+        "area_dark_flag",
+        "historical_hotspot",
+        "quarter"
+      ]
+    }
+  ],
+  "feature_labels": {
+    "vv_intensity_db": "Intensitas radar VV",
+    "vh_intensity_db": "Intensitas radar VH",
+    "radar_intensity_diff": "Selisih intensitas VV-VH",
+    "background_clutter": "Tingkat noise citra radar",
+    "snr_db": "Signal-to-noise ratio",
+    "length_m": "Panjang kapal",
+    "length_m_new": "Panjang kapal (estimasi)",
+    "dist_to_nearest_mpa_km": "Jarak ke kawasan konservasi",
+    "dist_to_eez_boundary_km": "Jarak ke batas ZEE",
+    "dist_to_nearest_port_km": "Jarak ke pelabuhan",
+    "dist_to_nearest_seizure_km": "Jarak ke lokasi Locus delicti",
+    "fishing_score": "Fishing score",
+    "fishing_score_new": "Fishing score (estimasi)",
+    "matching_score": "Skor kecocokan AIS",
+    "ais_flag_country_encoded": "Negara bendera AIS",
+    "area_dark_count_30d": "Jumlah kapal gelap 30 hari terakhir",
+    "area_dark_flag": "Flag area rawan kapal gelap",
+    "historical_hotspot": "Riwayat area rawan pelanggaran",
+    "quarter": "Kuartal musim"
+  }
+}

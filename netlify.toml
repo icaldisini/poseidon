@@ -1,19 +1,24 @@
-# konfigurasi build netlify
 [build]
   publish = "."
   functions = "netlify/functions"
 
-[build.environment]
-  SECRETS_SCAN_OMIT_KEYS = "SIMULATION_USER,SIMULATION_PASS"
+[[redirects]]
+  from = "/api/supabase"
+  to = "/.netlify/functions/supabase"
+  status = 200
 
-# pengalihan api login
+[[redirects]]
+  from = "/api/config"
+  to = "/.netlify/functions/config"
+  status = 200
+
 [[redirects]]
   from = "/api/login"
   to = "/.netlify/functions/login"
   status = 200
 
-# pengalihan api data
 [[redirects]]
   from = "/api/data"
   to = "/.netlify/functions/data"
   status = 200
+
