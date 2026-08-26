@@ -130,17 +130,17 @@
     },
     {
       "code": "C",
-      "name": "Fishing Score Oseanografi",
+      "name": "Status Identitas AIS",
       "features": [
+        "matching_score",
+        "ais_flag_country_encoded",
         "fishing_score"
       ]
     },
     {
       "code": "D",
-      "name": "Perilaku AIS & Konteks Spasio-Temporal",
+      "name": "Pola Temporal",
       "features": [
-        "matching_score",
-        "ais_flag_country_encoded",
         "area_dark_count_30d",
         "area_dark_flag",
         "historical_hotspot",
