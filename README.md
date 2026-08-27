@@ -6,9 +6,10 @@
 
 [![Website Live Demo](https://img.shields.io/badge/Website-Live%20Demo-0070f3?style=for-the-badge&logo=firefox&logoColor=white)](https://poseidon-website.netlify.app)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Models%20%26%20Data-FFD21E?style=for-the-badge)](https://huggingface.co/JullMol/POSEIDON)
+[![GitHub Automation](https://img.shields.io/badge/GitHub%20Actions-Automation%20Pipeline-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/JullMol/poseidon-automation.git)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 
-[Akses Live Web Dashboard](https://poseidon-website.netlify.app) | [Repositori Hugging Face](https://huggingface.co/JullMol/POSEIDON)
+[Akses Live Web Dashboard](https://poseidon-website.netlify.app) | [Repositori Hugging Face](https://huggingface.co/JullMol/POSEIDON) | [Sistem Otomasi (GitHub Actions & Live Supabase)](https://github.com/JullMol/poseidon-automation.git)
 
 </div>
 
@@ -24,6 +25,12 @@ Untuk menyelesaikan keterbatasan sumber daya armada patroli, POSEIDON mengintegr
 1. **Penginderaan Jauh Multi-Sumber**: Citra radar *Synthetic Aperture Radar* (SAR) satelit Sentinel-1 yang mampu menembus awan dan beroperasi siang-malam, diintegrasikan dengan data *Global Fishing Watch* (GFW) dan *Google Earth Engine* (GEE).
 2. **Dual-Pipeline PU Learning**: Formulasi *Positive-Unlabeled (PU) Learning* yang mengatasi ketiadaan label negatif pasti di laut lepas, didukung arsitektur **Pipeline GFW** (17 Fitur sebagai model utama) dan **Pipeline GEE** (13 Fitur sebagai strategi mitigasi operasional).
 3. **Conformal Prediction Risk Bounds**: Kalibrasi ambang batas risiko matematis ($\hat{q}$) dengan jaminan statistik *out-of-time* (OOT) cakupan 90%–100%, meminimalisir alarm palsu pada kapal niaga legal (*Reliable Negative*).
+
+### Ekosistem & Repositori Terkait
+* **Web Dashboard & Platform Interaktif** *(Repositori Ini)*: Antarmuka visual *Ocean-Dark Glassmorphism*, peta GIS Leaflet.js interaktif, dan backend serverless API.
+* **[Sistem Otomasi Poseidon — GitHub Actions & Live Supabase](https://github.com/JullMol/poseidon-automation.git)**: Engine pipeline harian berbasis GitHub Actions yang mengeksekusi ekstraksi data SAR Sentinel-1, inferensi skoring risiko kapal, dan sinkronisasi real-time ke basis data cloud Supabase.
+* **[Repositori Models & Datasets — Hugging Face](https://huggingface.co/JullMol/POSEIDON)**: Simpanan resmi bobot model machine learning (`.joblib`), metadata 4-dimensi, dan artefak evaluasi maritim.
+
 
 ---
 
