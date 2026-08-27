@@ -2789,10 +2789,10 @@ function drawImportance(M) {
     </div>
 
     <div class="fi-legend" style="margin-top:20px">
-      <span class="leg-tag"><i style="background:#1477B8"></i> Dim A (Fisik Radar)</span>
-      <span class="leg-tag"><i style="background:#0D9488"></i> Dim B (Spasial Regulasi)</span>
-      <span class="leg-tag"><i style="background:#F59E0B"></i> Dim C (Fishing Score Oseanografi)</span>
-      <span class="leg-tag"><i style="background:#EF4444"></i> Dim D (Spasio-Temporal & AIS)</span>
+      <span class="leg-tag"><i style="background:#1477B8"></i> Dim A (Karakteristik Fisik Radar)</span>
+      <span class="leg-tag"><i style="background:#0D9488"></i> Dim B (Konteks Spasial & Regulasi)</span>
+      <span class="leg-tag"><i style="background:#F59E0B"></i> Dim C (Status Identitas AIS)</span>
+      <span class="leg-tag"><i style="background:#EF4444"></i> Dim D (Pola Temporal)</span>
     </div>
   `;
 }
